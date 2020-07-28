@@ -58,7 +58,7 @@ timer.clloct()
 
 The cllocted information is a Markdown table style which can be copied and pasetd to your Markdown document.
 
-![./clloct_table.png](./clloct_tabel.png)
+![./clloct_table.png](./clloct_table.png)
 
 Moreover, Prettytimer provide a ETA (Estimated Time of Arrival) method:
 ```python
@@ -71,7 +71,7 @@ That's all! Pretty concise, right?
 Maybe there is a more graceful way to implement this, if yes, please tell me.
 
 # Installation
+Install latest development version:
 
+    pip install -U git+git@github.com:kinredon/prettytimer.git
 
-# Usage
-Every time you evaluate running time of your codeblock, for example, in a machine learning project, you want to 
