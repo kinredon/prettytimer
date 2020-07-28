@@ -11,20 +11,19 @@ def local_scheme(version):
 
 
 setup(
-    name="prettytable",
-    description="A simple Python library for easily displaying tabular data in a "
-    "visually appealing ASCII table format",
+    name="prettytimer",
+    description=" a sssuper simple yet useful tool for you to collct \
+    the running time of the codeblock",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="Luke Maurits",
-    author_email="luke@maurits.id.au",
-    maintainer="Jazzband",
-    url="https://github.com/jazzband/prettytable",
-    project_urls={"Source": "https://github.com/jazzband/prettytable"},
+    author="kinredon",
+    author_email="kinredon@163.com",
+    maintainer="kinredon",
+    url="https://github.com/kinredon/prettytimer",
+    project_urls={"Source": "https://github.com/kinredon/prettytimer"},
     license="BSD (3 clause)",
     use_scm_version={"local_scheme": local_scheme},
     setup_requires=["setuptools_scm"],
-    extras_require={"tests": ["pytest", "pytest-cov"]},
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
     classifiers=[
         "Programming Language :: Python",
@@ -38,6 +37,5 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Topic :: Text Processing",
     ],
-    py_modules=["prettytable"],
-    test_suite="prettytable_test",
+    py_modules=["prettytimer"],
 )
