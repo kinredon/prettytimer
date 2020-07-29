@@ -1,8 +1,8 @@
 # PrettyTimer
 
-PrettyTimer is a sssuper simple yet useful tool for you to collct the running time of the codeblock.
+PrettyTimer is a simple yet useful tool for you to collect the running time of the code blocks.
 
-If you want to evaluate the running time of your codeblock, for example, in a machine learning project, the program has serveral stages: data load, model forward, gradient backward, etc. Even you will statistic running time more than ten codeblocks. The general way is to implement it like this:
+If you want to evaluate the running time of your code blocks, for example, in a machine learning project, the program has several stages: data load, model forward, gradient backward, etc. Even you will statistic running time more than ten code blocks. The general way is to implement it like this:
 ```python
 
 import time
@@ -30,7 +30,7 @@ print(end_time_clloct - start_time_clloct)
 
 ```
 
-PrettyTimer will reproduce it effiently and elegantly as follows:
+PrettyTimer will reproduce it efficiently and elegantly as follows:
 ```python'
 import time
 from prettytimer import PrettyTimer
@@ -49,22 +49,22 @@ timer.start('backward')
 time.sleep(3)
 timer.end('backward')
 
-timer.start('clloct')
+timer.start('collect')
 time.sleep(3)
-timer.end('clloct')
+timer.end('collect')
 
-timer.clloct()
+timer.collect()
 ```
 
-The cllocted information is a Markdown table style which can be copied and pasetd to your Markdown document.
+The collected information is a Markdown table style which can be copied and pasted to your Markdown document.
 
 ![./clloct_table.png](https://github.com/kinredon/prettytimer/blob/master/clloct_table.png)
 
-Moreover, Prettytimer provide a ETA (Estimated Time of Arrival) method:
+Moreover, Prettytimer provides an ETA (Estimated Time of Arrival) method:
 ```python
 timer.eta(NAME, ITER, TOTAL)
 ```
-where NANE is an unique identifier to a timer, ITER is current iteration and TOTAL is total iterations of your training schedule.
+Where NANE is a unique identifier to a timer, ITER is the current iteration and TOTAL is the total iteration of your training schedule.
 
 That's all! Pretty concise, right? 
 
@@ -78,4 +78,3 @@ Install via pip:
 Install latest development version:
 
     pip install -U git+git@github.com:kinredon/prettytimer.git
-

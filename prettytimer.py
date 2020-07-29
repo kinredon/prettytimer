@@ -31,7 +31,7 @@ class PrettyTimer():
 
         Arguments:
 
-        name - string, an unique timer name
+        name - string, a unique timer name
         """
         if name not in self._names:
             self._names.append(name)
@@ -42,7 +42,7 @@ class PrettyTimer():
 
         Arguments:
 
-        name - string, an unique timer name
+        name - string, a unique timer name
         """
         if name not in self._names:
             raise f"No such a timer: {name}"
@@ -52,7 +52,7 @@ class PrettyTimer():
             raise f"Time gap is less than zero in timer {name}"
         self._time_gap[name] = gap
 
-    def clloct(self):
+    def collect(self):
         """Collect all the timer information, print it formatly.
 
         Arguments: None
@@ -72,7 +72,7 @@ class PrettyTimer():
 
         Arguments:
 
-        name - string, an unique timer name
+        name - string, a unique timer name
         cur - interger, current iterations of the running
         total - interger, total iterations of the running
         """
