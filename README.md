@@ -70,7 +70,14 @@ That's all! Pretty concise, right?
 
 Maybe there is a more graceful way to implement this, if yes, please tell me.
 
+# Requirements
+
+Install latest development version `prettytable` via pip:
+    
+    pip install -U git+https://github.com/jazzband/prettytable
+
 # Installation
+
 Install via pip:
 
     pip install -U prettytimer
