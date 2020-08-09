@@ -7,6 +7,10 @@ timer.start('load_data')
 time.sleep(3)
 timer.end('load_data')
 
+timer.start('load_data')
+time.sleep(1)
+timer.end('load_data')
+
 timer.start('forward')
 time.sleep(3)
 timer.end('forward')
@@ -19,4 +23,4 @@ timer.start('clloct')
 time.sleep(3)
 timer.end('clloct')
 
-timer.clloct()
+timer.collect()
