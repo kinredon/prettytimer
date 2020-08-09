@@ -9,22 +9,30 @@ import datetime
 from collections import defaultdict
 from prettytable import PrettyTable, MARKDOWN
 
+__MODE__ = ['mean', 'sum', 'current']
 
 class PrettyTimer():
-    def __init__(self):
+    def __init__(self, mode='mean'):
         """Returen a new PrettyTimer instance.
 
-        Arguments: None
+        Arguments:
+            mode - 'sum', 'mean', 'current', default is 'mean'
 
         """
+        if mode not in __MODE__:
+            raise RuntimeError(f'mode {mode} is not support!')
+        self._mode = mode
         self._names = []
         self._start_timer = {}
         self._end_timer = {}
         self._time_gap = defaultdict(lambda: 0.0)
+        self._names2counter = {}
+        self._total_time_gap = defaultdict(lambda: 0.0)
+
 
     def _is_duplicated(self, name):
         if name in self._names:
-            raise f"The duplicated name: {name}"
+            raise RuntimeError(f"The duplicated name: {name}")
 
     def start(self, name):
         """Start a timer named 'name' and record the start time of this timer.
@@ -45,12 +53,20 @@ class PrettyTimer():
         name - string, a unique timer name
         """
         if name not in self._names:
-            raise f"No such a timer: {name}"
+            raise RuntimeError(f"No such a timer: {name}")
         self._end_timer[name] = time.time()
+
         gap = self._end_timer[name] - self._start_timer[name]
         if gap < 0:
-            raise f"Time gap is less than zero in timer {name}"
+            raise RuntimeError(f"Time gap is less than zero in timer {name}")
         self._time_gap[name] = gap
+
+        if name in self._total_time_gap.keys():
+            self._total_time_gap[name] += gap
+            self._names2counter[name] += 1
+        else:
+            self._total_time_gap[name] = gap
+            self._names2counter[name] = 1
 
     def collect(self):
         """Collect all the timer information, print it formatly.
@@ -62,7 +78,12 @@ class PrettyTimer():
         pt.set_style(MARKDOWN)
         time_gap = []
         for name in self._names:
-            time_gap.append(self._time_gap[name])
+            if self._mode is 'current':
+                time_gap.append(self._time_gap[name])
+            elif self._mode is 'sum':
+                time_gap.append(self._total_time_gap[name])
+            else:
+                time_gap.append(self._total_time_gap[name] / self._names2counter[name])
         pt.add_row(time_gap)
         pt.float_format = "0.3"
         print(pt)
@@ -86,10 +107,11 @@ class PrettyTimer():
 
 
 if __name__ == '__main__':
-    timer = PrettyTimer()
-    for i in range(100):
+    timer = PrettyTimer(mode='sum')
+    for i in range(10):
         timer.start("iter")
-        time.sleep(2)
+        time.sleep(1)
         timer.end("iter")
-        eta = timer.eta("iter", i, 100)
-        print(f"ETA: {eta}")
+        # eta = timer.eta("iter", i, 100)
+        # print(f"ETA: {eta}")
+    timer.collect()
