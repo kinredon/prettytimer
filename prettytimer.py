@@ -12,16 +12,14 @@ from prettytable import PrettyTable, MARKDOWN
 __MODE__ = ['mean', 'sum', 'current']
 
 class PrettyTimer():
-    def __init__(self, mode='mean'):
+    def __init__(self):
         """Returen a new PrettyTimer instance.
 
         Arguments:
             mode - 'sum', 'mean', 'current', default is 'mean'
 
         """
-        if mode not in __MODE__:
-            raise RuntimeError(f'mode {mode} is not support!')
-        self._mode = mode
+
         self._names = []
         self._start_timer = {}
         self._end_timer = {}
@@ -68,19 +66,21 @@ class PrettyTimer():
             self._total_time_gap[name] = gap
             self._names2counter[name] = 1
 
-    def collect(self):
+    def collect(self, mode='mean'):
         """Collect all the timer information, print it formatly.
 
         Arguments: None
         """
+        if mode not in __MODE__:
+            raise RuntimeError(f'mode {mode} is not support!')
         pt = PrettyTable()
         pt.field_names = self._names
         pt.set_style(MARKDOWN)
         time_gap = []
         for name in self._names:
-            if self._mode is 'current':
+            if mode is 'current':
                 time_gap.append(self._time_gap[name])
-            elif self._mode is 'sum':
+            elif mode is 'sum':
                 time_gap.append(self._total_time_gap[name])
             else:
                 time_gap.append(self._total_time_gap[name] / self._names2counter[name])
