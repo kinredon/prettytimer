@@ -84,4 +84,4 @@ Install via pip:
     
 Install latest development version:
 
-    pip install -U git+git@github.com:kinredon/prettytimer.git
+    pip install -U git+https://github.com/kinredon/prettytimer.git
